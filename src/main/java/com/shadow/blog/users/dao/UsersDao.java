@@ -4,7 +4,7 @@ import com.shadow.blog.users.dto.UsersDto;
 
 public interface UsersDao {
 	public void insert();	
-	public boolean checkId();
+	public boolean checkId(String inputId);
 	public void update();
 	public UsersDto getData();
 }

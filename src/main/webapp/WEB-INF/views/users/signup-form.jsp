@@ -60,9 +60,11 @@
 				<div class="col-lg-12">
 					<h3>기본 form스타일</h3>
 					<form action="users/signin.do" method="post">
-						<div class="form-group">
-							<label for="id">아이디</label>
+						<div class="form-group has-feedback">
+							<label class="control-label" for="id">아이디</label>
 							<input class="form-control" type="text" name="id" id="id"/>
+							<p class="help-block">사용할 수 없는 아이디 입니다.</p>
+							<span class="glyphicon form-control-feedback"></span>
 						</div>
 						<div class="form-group">
 							<label for="pwd">비밀번호</label>
@@ -73,7 +75,7 @@
 							<input class="form-control" type="text" name="pwd2" id="pwd2"/>
 						</div>
 						<div class="form-group">
-							<label for="email">비밀번호</label>
+							<label for="email">이메일</label>
 							<input class="form-control" type="text" name="email" id="email"/>
 						</div>
 						<button class="btn btn-primary" type="submit">로그인</button>
@@ -83,5 +85,42 @@
 			</div>
 		</div>
 	</section>
+	<script src="${pageContext.request.contextPath }/resources/js/jquery-3.1.1.js"></script>
+	<script>
+		// 아이디 입력 이벤트가 발생했을때 실행할 함수
+		$("#id").on("keyup", function() {
+			var inputId = $("#id").val();
+			$.ajax({
+				url: "checkid.do",
+				method: "get",
+				data: {inputId:inputId},
+				success: function(data) {
+					$("#id").parent()
+					.removeClass("has-success has-error");
+					if(data.canUse){
+						$("#id")
+						.parent()
+						.addClass("has-success")
+						.find(".help-block")
+						.hide()
+						.parent()
+						.find(".glyphicon")
+						.removeClass("glyphicon-remove")
+						.addClass("glyphicon-ok");
+					}else{
+						$("#id")
+						.parent()
+						.addClass("has-error")
+						.find(".help-block")
+						.show()
+						.parent()
+						.find(".glyphicon")
+						.removeClass("glyphicon-ok")
+						.addClass("glyphicon-remove");
+					}
+				}
+			});
+		});
+	</script>
 </body>
 </html>

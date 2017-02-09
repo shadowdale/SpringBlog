@@ -19,9 +19,8 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 	@Override
-	public boolean checkId() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean checkId(String inputId) {
+		return usersDao.checkId(inputId);
 	}
 
 	@Override

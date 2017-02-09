@@ -19,9 +19,13 @@ public class UsersDaoImpl implements UsersDao{
 	}
 
 	@Override
-	public boolean checkId() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean checkId(String inputId) {
+		String resultId = session.selectOne("users.isExistId", inputId);
+		if(resultId == null) {
+			return true;
+		} else {
+			return false;			
+		}
 	}
 
 	@Override
