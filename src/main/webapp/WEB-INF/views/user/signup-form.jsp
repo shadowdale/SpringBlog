@@ -59,26 +59,26 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h3>기본 form스타일</h3>
-					<form action="users/signin.do" method="post">
+					<form action="signup.do" method="post" id="signupForm">
 						<div class="form-group has-feedback">
 							<label class="control-label" for="id">아이디</label>
-							<input class="form-control" type="text" name="id" id="id"/>
+							<input class="form-control" type="text" name="user_id" id="id"/>
 							<p class="help-block">사용할 수 없는 아이디 입니다.</p>
 							<span class="glyphicon form-control-feedback"></span>
 						</div>
 						<div class="form-group">
 							<label for="pwd">비밀번호</label>
-							<input class="form-control" type="text" name="pwd" id="pwd"/>
+							<input class="form-control" type="password" name="user_pwd" id="pwd"/>
 						</div>
 						<div class="form-group">
 							<label for="pwd2">비밀번호 확인</label>
-							<input class="form-control" type="text" name="pwd2" id="pwd2"/>
+							<input class="form-control" type="password" id="pwd2"/>
 						</div>
 						<div class="form-group">
 							<label for="email">이메일</label>
-							<input class="form-control" type="text" name="email" id="email"/>
+							<input class="form-control" type="text" name="user_email" id="email"/>
 						</div>
-						<button class="btn btn-primary" type="submit">로그인</button>
+						<button class="btn btn-primary" type="submit">가입</button>
 						<button class="btn btn-warning" type="reset">취소</button>
 					</form>
 				</div>
@@ -120,6 +120,31 @@
 					}
 				}
 			});
+		});
+		
+		// 입력 받은 비밀번호 확인
+		$("#signupForm").on("submit", function(event){
+			var inputId = $("#id").val();
+			var inputPwd = $("#pwd").val();
+			var inputPwd2 = $("#pwd2").val();
+			if(inputId.length <= 0) { // 아이디를 입력받지 않았다면
+				alert("아이디를 입력하세요");
+				return false;//폼전송 막기 
+			} else if(inputPwd.length < 8) { // 비밀번호 길이 검증
+				alert("비밀번호는 8자리 이상 입력하세요");
+				return false;//폼전송 막기 
+			} else if(inputPwd != inputPwd2){ // 비밀번호가 같지 않다면
+				alert("비밀번호를 확인 하세요");
+				return false;//폼전송 막기 
+			} else {
+				var email = $("#email").val();
+				var regex=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;   
+				  
+				if(regex.test(email) === false) {  // 이메일이 형식에 맞지 않는다면
+				    alert("잘못된 이메일 형식입니다.");  
+				    return false;  
+				}
+			}
 		});
 	</script>
 </body>

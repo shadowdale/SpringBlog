@@ -1,9 +1,11 @@
-package com.shadow.blog.users.service;
+package com.shadow.blog.user.service;
 
 import org.springframework.web.servlet.ModelAndView;
 
-public interface UsersService {
-	public void insert();	
+import com.shadow.blog.user.dto.UserDto;
+
+public interface UserService {
+	public void insert(UserDto Dto);	
 	public boolean checkId(String inputId);
 	public void update();
 	public ModelAndView getData();

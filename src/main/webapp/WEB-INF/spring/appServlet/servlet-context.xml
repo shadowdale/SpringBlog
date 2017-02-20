@@ -76,6 +76,7 @@
 	<tx:annotation-driven transaction-manager="txManager"/>
 	
 	<!-- 트렌젝션 블럭에서 발생한 에러 핸들링 -->
+	<!-- 
 	<beans:bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<beans:property name="exceptionMappings">
 			<beans:props>
@@ -88,7 +89,7 @@
 			</beans:props>
 		</beans:property>
 	</beans:bean>
-	
+	-->
 	<!-- Annotation 기반으로 aop 구현하기 위한 설정 -->
 	<aop:aspectj-autoproxy />
 	

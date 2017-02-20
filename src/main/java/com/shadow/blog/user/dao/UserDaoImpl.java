@@ -1,20 +1,20 @@
-package com.shadow.blog.users.dao;
+package com.shadow.blog.user.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.shadow.blog.users.dto.UsersDto;
+import com.shadow.blog.user.dto.UserDto;
 
 @Repository
-public class UsersDaoImpl implements UsersDao{
+public class UserDaoImpl implements UserDao{
 	
 	@Autowired
 	private SqlSession session;
 	
 	@Override
-	public void insert() {
-		// TODO Auto-generated method stub
+	public void insert(UserDto dto) {
+		session.insert("users.insert", dto);
 		
 	}
 
@@ -35,7 +35,7 @@ public class UsersDaoImpl implements UsersDao{
 	}
 
 	@Override
-	public UsersDto getData() {
+	public UserDto getData() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,31 +1,33 @@
-package com.shadow.blog.users.controller;
+package com.shadow.blog.user.controller;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.shadow.blog.users.service.UsersService;
+import com.shadow.blog.user.dto.UserDto;
+import com.shadow.blog.user.service.UserService;
 
 @Controller
-public class UsersController {
+public class UserController {
 	
 	@Autowired
-	private UsersService usersService;
+	private UserService usersService;
 	
 	// 회원가입폼 요청 처리
-	@RequestMapping("/users/signup-form")
+	@RequestMapping("/user/signup-form")
 	public String signupForm() {
 		
-		return "/users/signup-form";
+		return "/user/signup-form";
 	}
 	
 	// 중복 아이디 체크 요청처리
-	@RequestMapping("/users/checkid.do")
+	@RequestMapping("/user/checkid")
 	@ResponseBody
 	public Map<String, Object> checkId(@RequestParam String inputId) {
 		// 입력받은 문자열을 전달하고 boolean 값을 리턴 받는다.
@@ -35,5 +37,13 @@ public class UsersController {
 		map.put("canUse", canUse);
 		// Map을 리턴한다.
 		return map;
+	}
+	
+	// 회원가입 요청 처리
+	@RequestMapping("/user/signup")
+	public String signup(@ModelAttribute UserDto dto){
+		usersService.insert(dto);
+		
+		return "redirect:/home.do";
 	}
 }

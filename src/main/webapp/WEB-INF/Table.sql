@@ -1,7 +1,7 @@
 -- 회원정보 테이블
 CREATE TABLE blog_users(
 	user_id VARCHAR2(50) PRIMARY KEY,			-- 회원의 아이디
-	user_pwd VARCHAR2(50) NOT NULL, 			-- 회원의 비밀번호
+	user_pwd VARCHAR2(200) NOT NULL, 			-- 회원의 비밀번호
 	user_email VARCHAR2(100) NOT NULL,			-- 회원의 이메일
 	regdate DATE								-- 회원의 가입일
 );

@@ -10,4 +10,10 @@
 		FROM blog_users
 		WHERE user_id=#{inputId}
 	</select>
+	
+	<insert id="insert" parameterType="userDto">
+		INSERT INTO blog_users
+		(user_id, user_pwd, user_email, regdate)
+		VALUES(#{user_id}, #{user_pwd}, #{user_email}, SYSDATE)
+	</insert>
 </mapper>
