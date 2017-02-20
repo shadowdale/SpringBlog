@@ -16,4 +16,10 @@
 		(user_id, user_pwd, user_email, regdate)
 		VALUES(#{user_id}, #{user_pwd}, #{user_email}, SYSDATE)
 	</insert>
+	
+	<select id="getPwd" parameterType="string" resultType="string">
+		SELECT user_pwd
+		FROM blog_users
+		WHERE user_id = #{id}
+	</select>
 </mapper>

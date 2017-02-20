@@ -7,4 +7,5 @@ public interface UserDao {
 	public boolean checkId(String inputId);
 	public void update();
 	public UserDto getData();
+	public String getPassword(String id);
 }

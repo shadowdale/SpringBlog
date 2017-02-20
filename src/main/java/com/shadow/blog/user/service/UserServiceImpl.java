@@ -46,4 +46,19 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	@Override
+	public boolean isValid(UserDto dto) {
+
+		boolean isValid = false;
+		String password = userDao.getPassword(dto.getUser_id());
+		
+		if(password != null) {
+			isValid = pEncoder.matches(dto.getUser_pwd(), password);
+		}
+		
+		return isValid;
+	}
+	
+	
+
 }

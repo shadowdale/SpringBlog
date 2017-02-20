@@ -40,4 +40,10 @@ public class UserDaoImpl implements UserDao{
 		return null;
 	}
 
+	@Override
+	public String getPassword(String id) {
+		String password = session.selectOne("users.getPwd", id);
+		return password;
+	}
+
 }
